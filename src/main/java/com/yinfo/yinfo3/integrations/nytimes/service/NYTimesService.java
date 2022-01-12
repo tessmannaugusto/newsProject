@@ -37,11 +37,13 @@ public class NYTimesService {
             if (response != null){
                 List<News> newsList = filterNews(response);
                 newsRepositoryService.saveListToNewsRepository(newsList);
+                log.info("Success in retrieving news from NYTimesAPI. Total number of news: " + newsList.size());
                 return newsList;
             }
+            log.info("Could not retrieve news from NYTimesAPI.");
             return null;
-
         }catch (Exception e){
+            log.error("Error in accessing NYTimesAPI. Error: " + e.getMessage());
             return null;
         }
     }
@@ -58,8 +60,4 @@ public class NYTimesService {
         }
         return filteredNewsList;
     }
-
-
-
-
 }

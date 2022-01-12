@@ -22,17 +22,18 @@ public class NewsRepositoryService {
 
 
     public void saveToNewsRepository(NewsEntity newsToBeSaved){
-        newsRepository.saveAndFlush(newsToBeSaved);
+        try{
+            newsRepository.saveAndFlush(newsToBeSaved);
+            log.info("Saved news: " + newsToBeSaved.getTitle() + " to database.");
+        }catch (Exception e){
+            log.error("Error when saving news: " + newsToBeSaved.getTitle() + " to database." );
+        }
     }
 
     public void saveListToNewsRepository(List<News> newsListToBeSaved){
         for(News news : newsListToBeSaved){
             NewsEntity newsEntity = newsToNewsEntityMapper.NewsToNewsEntity(news);
-            newsRepository.saveAndFlush(newsEntity);
-            log.info("Saved news: " + news.getTitle());
+            saveToNewsRepository(newsEntity);
         }
     }
-
-
-
 }
