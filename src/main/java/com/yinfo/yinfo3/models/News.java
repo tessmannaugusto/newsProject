@@ -13,6 +13,6 @@ public class News {
     private String section;
     private String subsection;
     private String title;
-    private String newsabstract;
+    private String newsAbstract;
     private String url;
 }

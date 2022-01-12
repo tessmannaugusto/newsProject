@@ -1,12 +1,13 @@
 package com.yinfo.yinfo3.controllers;
 
-import com.yinfo.yinfo3.integrations.nytimes.client.NYTimesClient;
-import com.yinfo.yinfo3.integrations.nytimes.contract.NYTResponse;
+
 import com.yinfo.yinfo3.integrations.nytimes.service.NYTimesService;
+import com.yinfo.yinfo3.models.News;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class MockController {
@@ -15,7 +16,7 @@ public class MockController {
     public NYTimesService nyTimesService;
 
     @GetMapping("/getNews")
-    private NYTResponse getNews(){
+    private List<News> getNews(){
         return nyTimesService.getNews();
     }
 }
